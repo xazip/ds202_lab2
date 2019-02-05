@@ -1,0 +1,26 @@
+---
+title: "Flavors of Chocolate"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+
+str(choco)
+hist(choco$Rating)
+# The histogram seems to be unimodal and the shape of the histogram seems to be bellshaped or one could argue that it is a little skewed to the left. 
+
+correlationChoco <-cor(choco$Cocoa.Pct, choco$Rating)
+print(correlationChoco)
+
+ggplot(choco, aes(x = Cocoa.Pct, y = Rating)) +
+  geom_point()
+
+# Looking at our statistics and plot, I believe there is very weak correlation between Cocoa.Pct and Rating.  So I would say no, the ratings do not depend on the cacao percentage. 
+```
