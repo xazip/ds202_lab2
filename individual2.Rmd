@@ -1,0 +1,29 @@
+---
+title: "individual2.Rmd"
+author: "Elaine"
+date: "2/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r cars}
+summary(cars)
+```
+
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+head(choco)
+View(choco)
+hist(choco$Rating)
+#Most of the ratings are between 2-4. There does seem to be outlier(s) present on the higher end of the ratings.
+
+cor(choco$Rating, choco$Cocoa.Pct)
+#No I don't think the ratings depend on cocoa percentage
+
+
+
