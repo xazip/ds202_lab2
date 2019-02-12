@@ -243,7 +243,7 @@ ggplot(choco, aes(x = num_Rate_Comp_Locate))+
 # Question:  What Company produces the chocolates with the highest coco percentages on average?
 
 Company_Cocoa.Pct &lt;- choco[, c('Company','Cocoa.Pct' )]
-Company_Highest_Mean_CocoaPct &lt;- aggregate(choco$Cocoa.Pct, by = list(Company = choco$Company), data = choco, FUN = mean) # Read up on aggregate using stack overflow and https://www.rdocumentation.org/packages/stats/versions/3.5.2/topics/aggregate. 
+Company_Highest_Mean_CocoaPct &lt;- aggregate(data = choco, choco$Cocoa.Pct, by = list(Company = choco$Company), FUN = mean) # Read up on aggregate using stack overflow and https://www.rdocumentation.org/packages/stats/versions/3.5.2/topics/aggregate. 
 Highest_Mean_Cocoa &lt;- Company_Highest_Mean_CocoaPct[order(-Company_Highest_Mean_CocoaPct$x), ] #I do not take credit for this line of code.  A fellow student on piazza help answer my question!
 
 head(Highest_Mean_Cocoa, 10)</code></pre>
