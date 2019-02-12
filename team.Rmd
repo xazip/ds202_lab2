@@ -1,5 +1,5 @@
 ---
-title: "team.Rmd"
+title: "Lab 2 Team Questions and Answers"
 output: html_document
 ---
 
@@ -22,7 +22,7 @@ sum(table(choco$Rating))
 
 
 ```
-# 1852 chocolate bars were rated in this data set.
+#1. 1852 chocolate bars were rated in this data set.
 
 ```{r}
 #2
@@ -39,38 +39,49 @@ ggplot(choco,  aes(x = Review.Date))+
 
 
 ```
+
+
 #2. This barplot shows the number of reviews for a particular year (2006-2017) from the Choco #dataset. In general, reviews seem to be steadily increasing every year which shows on the plot, but after 2015- there seems to be a slight drop in 2016. I'm not too sure what happened in 2017, maybe they didn't collect data for the full 12 months.
+
+
 
 ```{r}
 #3
 #summary(choco$Company.Location)
 #sum(table(choco$Company.Location))
-sort(table(choco$Company.Location), decreasing = TRUE)
+#sort(table(choco$Company.Location), decreasing = TRUE)
 
 
-num_Rate_Comp_Locate <- factor(choco$Company.Location, levels = names(sort(table(choco$Company.Location))))
+num_Rate_Comp_Locate <- factor(choco$Company.Location, levels = names(sort(summary(choco$Company.Location)))) #Using Basic R to sort the company location with most chocolate ratings
 
 
 
 
 ggplot(choco, aes(x = num_Rate_Comp_Locate))+
   geom_bar()+
-  theme(text = element_text(size = 7))+
+  theme(text = element_text(size = 7))+ # Allow the Country Names to be visible to the Reader.
   coord_flip()+
   ggtitle("Ratings Compared Across Different Company Locations")
 
 
 ```
+
+
 #3. The graph above shows how the number of ratings compare across the different company #locations in the choco dataset. You can see the the company with the most ratings are: USA, #France and Canada. They are the only locations that have 100+ ratings. The United States has a #considerable amount more than any other company location, which I suspect is due to the US #being one of the top producers of chocolate in the world.
 
 
-# Question:  What Company produces the chocolate with the highest coco percentages on average
+
 ```{r}
 #4 and #5
 
-num <- choco[, c('Company','Cocoa.Pct' )]
-num2 <- aggregate(choco$Cocoa.Pct, by = list(Company = choco$Company), data = choco, FUN = mean)
-num2
-num2[order(-num2$x), ] #I do not take credit for this line of code.  A fellow student on piazza help answer my question! 
+# Question:  What Company produces the chocolates with the highest coco percentages on average?
+
+Company_Cocoa.Pct <- choco[, c('Company','Cocoa.Pct' )]
+Company_Highest_Mean_CocoaPct <- aggregate(choco$Cocoa.Pct, by = list(Company = choco$Company), data = choco, FUN = mean) # Read up on aggregate using stack overflow and https://www.rdocumentation.org/packages/stats/versions/3.5.2/topics/aggregate. 
+Highest_Mean_Cocoa <- Company_Highest_Mean_CocoaPct[order(-Company_Highest_Mean_CocoaPct$x), ] #I do not take credit for this line of code.  A fellow student on piazza help answer my question!
+
+head(Highest_Mean_Cocoa, 10)
 ```
-#Bouga Cacao produces the chocolate with the highest coco percentages on average.
+
+
+#4&5. Bouga Cacao(Tulicorp) produces chocolates with the highest coco percentages on average.  Chocolate Alchemist-Philly, Garden Island, Lindt & Sprungli, and Nanea are all very close to producing chocolates with the highest cocoa.pct on average. This is most likely due to these companies offering a chocolate with extremely high cocoa.pct.  This doesn't mean these companies "only" produce chocolate with high cocoa.pct but they offer one.    
