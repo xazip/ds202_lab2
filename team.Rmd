@@ -39,7 +39,7 @@ ggplot(choco,  aes(x = Review.Date))+
 
 
 ```
-
+#2. This barplot shows the number of reviews for a particular year (2006-2017) from the Choco #dataset. In general, reviews seem to be steadily increasing every year which shows on the plot, but after 2015- there seems to be a slight drop in 2016. I'm not too sure what happened in 2017, maybe they didn't collect data for the full 12 months.
 
 ```{r}
 #3
@@ -61,7 +61,7 @@ ggplot(choco, aes(x = num_Rate_Comp_Locate))+
 
 
 ```
-
+#3. The graph above shows how the number of ratings compare across the different company #locations in the choco dataset. You can see the the company with the most ratings are: USA, #France and Canada. They are the only locations that have 100+ ratings. The United States has a #considerable amount more than any other company location, which I suspect is due to the US #being one of the top producers of chocolate in the world.
 
 
 # Question:  What Company produces the chocolate with the highest coco percentages on average
